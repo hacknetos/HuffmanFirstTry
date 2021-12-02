@@ -19,7 +19,7 @@ public class Program
                 }
 
             if (!success)
-                nodes.Add(new NodeChar(c, 1));
+                nodes.Add(new Node(c, 1));
 
         }
         
@@ -33,7 +33,7 @@ public class Program
             Node one, two;
             one =nodes[0];
             two =nodes[1];
-            NodeValue checkpointCharlie = new NodeValue(one.value+two.value);
+            Node checkpointCharlie = new Node(one.value+two.value);
 
             if (one.value>two.value)
             {
@@ -52,7 +52,7 @@ public class Program
             nodes = QuikSort.Sort(nodes);
         }
         NodeTree yggdrasil = new NodeTree(nodes[0],nodes[1]);
-        
+        Console.WriteLine("\n"+ yggdrasil.origin.value + "\n");
         foreach (var item in input)
         {
             Console.WriteLine(yggdrasil.encrypt(item, "", yggdrasil.origin));

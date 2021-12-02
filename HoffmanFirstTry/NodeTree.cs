@@ -2,7 +2,7 @@
 {
     public class NodeTree
     {
-        public Node left, right, origin;
+        public Node origin;
 
         public NodeTree(Node left, Node right)
         {
@@ -34,21 +34,32 @@
         }
         public string encrypt(char letter, string code, Node node)
         {
-
-            if (node != null)
-                if (node.letter == letter)
-                    return code;
-                else
-
-                if (encrypt(letter, code += "0", node.left) != code)
-                    return code += "0";
-                else if (encrypt(letter, code += "1", node.right) != code)
-                    return code += "1";
-                else
-                    return code.Remove(code.Length - 1,1);
+            if (node.letter == letter)
+                return code;
             else
-                    return code.Remove(code.Length - 1,1);
+            {
+                string tmp = "";
+                if (node.right != null)
+                {
+                     tmp = encrypt(letter, code + '1', node.right);
+                    if (tmp != code)
+                    {
+                        return tmp;
+                    }
+                    
+                }
+                if (node.left != null)
+                {
+                    tmp = encrypt(letter, code + '0', node.left);
+                     if (tmp != code)
+                    {
+                        return tmp;
+                    }
+                }
+                return code = code.Remove(code.Length-1,1);
+            }
 
+            
 
 
 
