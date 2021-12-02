@@ -19,7 +19,7 @@ public class Program
                 }
 
             if (!success)
-                nodes.Add(new Node(c, 1));
+                nodes.Add(new Node(c, 1));//hallo
 
         }
         
