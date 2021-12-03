@@ -1,47 +1,43 @@
-﻿//using System.Collections.Generic;
-//using HoffmanFirstTry;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HoffmanFirstTry
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
-            List<Node> nodes = new List<Node>();
-            string input = Console.ReadLine();
-
-            foreach (char c in input)
+            List<Node?> nodes = new List<Node?>();
+            
+            var input = Console.ReadLine();
+            if (input == null) return;
+            
+            foreach (var c in input)
             {
-                bool success = false;
+                var success = false;
 
-                foreach (Node item in nodes)
-                    if (item.letter == c)
-                    {
-                        item.value++;
-                        success = true;
-                        break;
-                    }
+                foreach (var item in nodes.Where(item => item!.letter == c))
+                {
+                    item!.value++;
+                    success = true;
+                    break;
+                }
 
                 if (!success)
-                    nodes.Add(new Node(c, 1)); //hallo
-
+                    nodes.Add(new Node(c, 1));
             }
-
-
+            
             nodes = QuikSort.Sort(nodes);
 
             foreach (var item in nodes)
-                Console.WriteLine(item.letter + " " + item.value);
+                Console.WriteLine(item!.letter + " " + item.value);
 
             while (nodes.Count > 2)
             {
-                Node one, two;
-                one = nodes[0];
-                two = nodes[1];
-                Node checkpointCharlie = new Node(one.value + two.value);
+                var one = nodes[0];
+                var two = nodes[1];
+                var checkpointCharlie = new Node(one!.value + two!.value);
 
                 if (one.value > two.value)
                 {
@@ -61,10 +57,12 @@ namespace HoffmanFirstTry
             }
 
             NodeTree yggdrasil = new NodeTree(nodes[0], nodes[1]);
-            Console.WriteLine("\n" + yggdrasil.origin.value + "\n");
-            foreach (var item in input)
+            if (yggdrasil.Origin == null) return;
             {
-                Console.WriteLine(yggdrasil.encrypt(item, "", yggdrasil.origin));
+                Console.WriteLine("\n" + yggdrasil.Origin.value + "\n");
+
+                foreach (var item in input)
+                    Console.WriteLine(NodeTree.Encrypt(item, "", yggdrasil.Origin));
             }
         }
     }

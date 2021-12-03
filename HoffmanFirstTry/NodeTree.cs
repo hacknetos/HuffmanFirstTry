@@ -2,67 +2,67 @@
 {
     public class NodeTree
     {
-        public Node origin;
+        public readonly Node? Origin;
 
-        public NodeTree(Node left, Node right)
+        public NodeTree(Node? left, Node? right)
         {
-            origin = new Node();
-            if (left.value < right.value)
+            Origin = new Node();
+            if (left!.value < right!.value)
             {
 
-                origin.left = left;
-                origin.right = right;
+                Origin.left = left;
+                Origin.right = right;
             }
             else
             {
-                origin.right = left;
-                origin.left = right;
+                Origin.right = left;
+                Origin.left = right;
             }
         }
-        //such den Tree nach dem Buch staben anhand der gegeben zahlen 
+        
+        //such den Tree nach dem Buchstaben anhand der gegeben zahlen 
         public char search(string code)
         {
-            Node node = origin;
-            foreach (char direction in code)
+            var node = Origin;
+            foreach (var direction in code)
             {
                 if (direction == '0')
-                    node = node.left;
+                    node = node!.left;
                 else
-                    node = node.right;
+                    node = node!.right;
             }
-            return node.letter;
+            return node!.letter;
         }
-        public string encrypt(char letter, string code, Node node)
+        
+        public static string Encrypt(char letter, string code, Node? node)
         {
-            if (node.letter == letter)
+            if (node!.letter == letter)
                 return code;
             else
             {
-                string tmp = "";
+                string tmp;
+                
                 if (node.right != null)
                 {
-                    tmp = encrypt(letter, code + '1', node.right);
+                    tmp = Encrypt(letter, code + '1', node.right);
                     if (tmp != code)
                     {
                         return tmp;
                     }
 
                 }
+                // ReSharper disable once InvertIf
                 if (node.left != null)
                 {
-                    tmp = encrypt(letter, code + '0', node.left);
+                    tmp = Encrypt(letter, code + '0', node.left);
                     if (tmp != code)
                     {
                         return tmp;
                     }
                 }
-                return code = code.Remove(code.Length - 1, 1);
+                
+                return code.Remove(code.Length - 1, 1);
             }
-
-
-
-
-
         }
     }
 }

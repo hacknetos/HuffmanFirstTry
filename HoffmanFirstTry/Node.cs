@@ -3,8 +3,9 @@
     public class Node
     {
         public int value;
-        public char letter = '\0';
-        public Node left, right;
+        public readonly char letter = '\0';
+        public Node? left;
+        public Node? right;
 
         public Node(char letter, int value)
         {
