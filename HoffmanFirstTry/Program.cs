@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace HoffmanFirstTry
 {
@@ -59,10 +60,22 @@ namespace HoffmanFirstTry
             NodeTree yggdrasil = new NodeTree(nodes[0], nodes[1]);
             if (yggdrasil.Origin == null) return;
             {
-                Console.WriteLine("\n" + yggdrasil.Origin.value + "\n");
-
+                string result = "";
+                // ReSharper disable once ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
                 foreach (var item in input)
-                    Console.WriteLine(NodeTree.Encrypt(item, "", yggdrasil.Origin));
+                    result += NodeTree.Encrypt(item, "", yggdrasil.Origin) + "|";
+
+                Console.WriteLine(result);
+
+                string[] raw = result.Split('|');
+                string ausgabe = "";
+                
+                // ReSharper disable once LoopCanBeConvertedToQuery
+                foreach (var code in raw)
+                    ausgabe += NodeTree.search(code,yggdrasil.Origin);
+
+                Console.WriteLine(ausgabe);
+                Thread.Sleep(20000);
             }
         }
     }

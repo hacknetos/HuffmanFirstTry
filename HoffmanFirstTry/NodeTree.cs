@@ -1,4 +1,6 @@
-﻿namespace HoffmanFirstTry
+﻿using System.Runtime.InteropServices;
+
+namespace HoffmanFirstTry
 {
     public class NodeTree
     {
@@ -21,9 +23,8 @@
         }
         
         //such den Tree nach dem Buchstaben anhand der gegeben zahlen 
-        public char search(string code)
+        public static char search(string code, Node? node)
         {
-            var node = Origin;
             foreach (var direction in code)
             {
                 if (direction == '0')
