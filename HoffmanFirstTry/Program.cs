@@ -1,61 +1,63 @@
-﻿namespace HoffmanFirstTry;
-public class Program
+﻿namespace HoffmanFirstTry
 {
-    public static void Main(string[] args)
+    public class Program
     {
-        List<Node> nodes = new List<Node>();
-        string input = Console.ReadLine();
-
-        foreach (char c in input)
+        public static void Main(string[] args)
         {
-            bool success = false;
+            List<Node> nodes = new List<Node>();
+            string input = Console.ReadLine();
 
-            foreach (Node item in nodes)
-                if (item.letter == c)
+            foreach (char c in input)
+            {
+                bool success = false;
+
+                foreach (Node item in nodes)
+                    if (item.letter == c)
+                    {
+                        item.value++;
+                        success = true;
+                        break;
+                    }
+
+                if (!success)
+                    nodes.Add(new Node(c, 1));//hallo
+
+            }
+
+            nodes = QuikSort.Sort(nodes);
+
+            foreach (var item in nodes)
+                Console.WriteLine(item.letter + " " + item.value);
+
+            while (nodes.Count > 2)
+            {
+                Node one, two;
+                one = nodes[0];
+                two = nodes[1];
+                Node checkpointCharlie = new Node(one.value + two.value);
+
+                if (one.value > two.value)
                 {
-                    item.value++;
-                    success = true;
-                    break;
+                    checkpointCharlie.left = one;
+                    checkpointCharlie.right = two;
+                }
+                else
+                {
+                    checkpointCharlie.right = one;
+                    checkpointCharlie.left = two;
                 }
 
-            if (!success)
-                nodes.Add(new Node(c, 1));//hallo
-
-        }
-        
-        nodes = QuikSort.Sort(nodes);
-
-        foreach (var item in nodes)
-            Console.WriteLine(item.letter + " " + item.value);
-
-        while (nodes.Count>2)
-        {
-            Node one, two;
-            one =nodes[0];
-            two =nodes[1];
-            Node checkpointCharlie = new Node(one.value+two.value);
-
-            if (one.value>two.value)
-            {
-                checkpointCharlie.left = one;
-                checkpointCharlie.right = two;
+                nodes.RemoveAt(0);
+                nodes.RemoveAt(1);
+                nodes.Add(checkpointCharlie);
+                nodes = QuikSort.Sort(nodes);
             }
-            else
+            NodeTree yggdrasil = new NodeTree(nodes[0], nodes[1]);
+            Console.WriteLine("\n" + yggdrasil.origin.value + "\n");
+            foreach (var item in input)
             {
-                checkpointCharlie.right=one;
-                checkpointCharlie.left=two;
+                Console.WriteLine(yggdrasil.encrypt(item, "", yggdrasil.origin));
             }
-
-            nodes.RemoveAt(0);
-            nodes.RemoveAt(1);
-            nodes.Add(checkpointCharlie);
-            nodes = QuikSort.Sort(nodes);
-        }
-        NodeTree yggdrasil = new NodeTree(nodes[0],nodes[1]);
-        Console.WriteLine("\n"+ yggdrasil.origin.value + "\n");
-        foreach (var item in input)
-        {
-            Console.WriteLine(yggdrasil.encrypt(item, "", yggdrasil.origin));
         }
     }
 }
