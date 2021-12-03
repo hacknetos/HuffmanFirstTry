@@ -24,6 +24,7 @@
 
             }
 
+            
             nodes = QuikSort.Sort(nodes);
 
             foreach (var item in nodes)
@@ -47,8 +48,8 @@
                     checkpointCharlie.left = two;
                 }
 
-                nodes.RemoveAt(0);
-                nodes.RemoveAt(1);
+                nodes.Remove(one);
+                nodes.Remove(two);
                 nodes.Add(checkpointCharlie);
                 nodes = QuikSort.Sort(nodes);
             }
