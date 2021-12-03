@@ -1,6 +1,8 @@
-﻿using System;
+﻿//using System.Collections.Generic;
+//using HoffmanFirstTry;
+
+using System;
 using System.Collections.Generic;
-using HoffmanFirstTry;
 
 namespace HoffmanFirstTry
 {
@@ -28,7 +30,7 @@ namespace HoffmanFirstTry
 
             }
 
-            
+
             nodes = QuikSort.Sort(nodes);
 
             foreach (var item in nodes)

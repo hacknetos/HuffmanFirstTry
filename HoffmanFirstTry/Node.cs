@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HoffmanFirstTry
+﻿namespace HoffmanFirstTry
 {
     public class Node
     {
@@ -12,7 +6,7 @@ namespace HoffmanFirstTry
         public char letter = '\0';
         public Node left, right;
 
-        public Node( char letter, int value)
+        public Node(char letter, int value)
         {
             this.value = value;
             this.letter = letter;
