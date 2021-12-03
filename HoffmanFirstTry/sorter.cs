@@ -1,4 +1,7 @@
-﻿namespace HoffmanFirstTry
+﻿using System;
+using System.Collections.Generic;
+
+namespace HoffmanFirstTry
 {
     public static class QuikSort
     {

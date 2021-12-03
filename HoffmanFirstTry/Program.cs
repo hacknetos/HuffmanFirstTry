@@ -1,4 +1,8 @@
-﻿namespace HoffmanFirstTry
+﻿using System;
+using System.Collections.Generic;
+using HoffmanFirstTry;
+
+namespace HoffmanFirstTry
 {
     public class Program
     {
@@ -20,7 +24,7 @@
                     }
 
                 if (!success)
-                    nodes.Add(new Node(c, 1));//hallo
+                    nodes.Add(new Node(c, 1)); //hallo
 
             }
 
@@ -53,6 +57,7 @@
                 nodes.Add(checkpointCharlie);
                 nodes = QuikSort.Sort(nodes);
             }
+
             NodeTree yggdrasil = new NodeTree(nodes[0], nodes[1]);
             Console.WriteLine("\n" + yggdrasil.origin.value + "\n");
             foreach (var item in input)
