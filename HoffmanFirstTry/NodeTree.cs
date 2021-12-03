@@ -41,25 +41,25 @@
                 string tmp = "";
                 if (node.right != null)
                 {
-                     tmp = encrypt(letter, code + '1', node.right);
+                    tmp = encrypt(letter, code + '1', node.right);
                     if (tmp != code)
                     {
                         return tmp;
                     }
-                    
+
                 }
                 if (node.left != null)
                 {
                     tmp = encrypt(letter, code + '0', node.left);
-                     if (tmp != code)
+                    if (tmp != code)
                     {
                         return tmp;
                     }
                 }
-                return code = code.Remove(code.Length-1,1);
+                return code = code.Remove(code.Length - 1, 1);
             }
 
-            
+
 
 
 
