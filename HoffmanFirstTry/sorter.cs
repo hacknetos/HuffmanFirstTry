@@ -6,14 +6,13 @@
         {
             if (sort.Count <= 1)
                 return sort;
-            
-            Random rand = new Random();
+
             List<Node> Links = new List<Node>();
             List<Node> Rechts = new List<Node>();
 
-            int point = rand.Next(1, sort.Count - 1);
-            Node tmp = sort[point];
-            sort.Remove(sort[point]);
+            
+            Node tmp = sort[sort.Count / 2];
+            sort.Remove(sort[sort.Count / 2]);
 
             foreach (var item in sort)
                 if (item.value > tmp.value)
