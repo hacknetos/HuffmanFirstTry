@@ -1,1 +1,1 @@
-# HoffmanFirstTry
+# HuffmanFirstTry
